@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Buku</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'toko_buku.json',
+                dataType: 'json',
+                success: function(data) {
+                    // Menampilkan informasi toko
+                    $('#store-name').text(data.nama_toko);
+                    $('#author').text(data.pengarang);
+                    $('#address').text(data.alamat);
+
+                    // Menampilkan koleksi buku dalam tabel
+                    var bookList = '';
+                    $.each(data.koleksi_buku, function(index, book) {
+                        bookList += '<tr>';
+                        bookList += '<td>' + book.judul + '</td>';
+                        bookList += '<td>' + book.tahun_terbit + '</td>';
+                        bookList += '<td>' + book.harga + '</td>';
+                        bookList += '</tr>';
+                    });
+                    $('#book-list').html(bookList);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="store-info">
+        <h2>Nama Toko</h2>
+        <p id="store-name"></p>
+        <h2>Pengarang</h2>
+        <p id="author"></p>
+        <h2>Alamat</h2>
+        <p id="address"></p>
+    </div>
+    <div id="book-collection">
+        <h2>Koleksi Buku</h2>
+        <table id="book-table">
+            <thead>
+                <tr>
+                    <th>Judul</th>
+                    <th>Tahun Terbit</th>
+                    <th>Harga</th>
+                </tr>
+            </thead>
+            <tbody id="book-list">
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

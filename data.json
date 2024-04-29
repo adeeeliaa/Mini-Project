@@ -1,0 +1,22 @@
+{
+    "nama_toko": "Toko Buku ABC",
+    "pengarang": "John Doe",
+    "alamat": "Jl. Contoh No. 123",
+    "koleksi_buku": [
+        {
+            "judul": "Pemrograman Web",
+            "tahun_terbit": 2020,
+            "harga": 150000
+        },
+        {
+            "judul": "Pemrograman Java",
+            "tahun_terbit": 2019,
+            "harga": 200000
+        },
+        {
+            "judul": "Algoritma dan Struktur Data",
+            "tahun_terbit": 2018,
+            "harga": 180000
+        }
+    ]
+}
