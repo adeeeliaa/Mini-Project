@@ -11,7 +11,13 @@
             $.ajax({
                 //Pengambilan data
                 url : 'data.json',
-                datatype : 'json'
+                datatype : 'json',
+                success : function(data){
+                    //Menampilkan informasi
+                    $('nama_toko').text(data.Toko_Buku.nama);
+                    $('alamat_toko').text(data.Toko_Buku.alamat);
+                    $('pengarang_toko').text(data.Toko_Buku.pengarang);
+                }
             });
         });
     </script>
