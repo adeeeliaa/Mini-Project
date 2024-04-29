@@ -4,23 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toko buku</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
-    <script>
-        $(document).ready(function(){
-            $.ajax({
-                //Pengambilan data
-                url : 'data.json',
-                datatype : 'json',
-                success : function(data){
-                    //Menampilkan informasi
-                    $('nama_toko').text(data.Toko_Buku.nama);
-                    $('alamat_toko').text(data.Toko_Buku.alamat);
-                    $('pengarang_toko').text(data.Toko_Buku.pengarang);
-                }
-            });
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            //Pengambilan data
+            url : 'data.json',
+            datatype : 'json',
+            success : function(data){
+                //Menampilkan informasi
+                $('#nama_toko').text(data.Toko_Buku.nama);
+                $('#alamat_toko').text(data.Toko_Buku.alamat);
+                $('#pemilik_toko').text(data.Toko_Buku.pemilik);
+            }
         });
-    </script>
-    
+    });
+
+    //AJAX
+
+    function loadbloc(){
+        //Mengambil data.json dan menampilkan tabel koleksi buku
+        $.ajax({
+            url : 'data.json',
+            datatype : 'json',
+            success : function(data){
+                var table = '<table><tr><th>Judul Buku</th><th>Tahun Terbit</th><th>Harga</th></tr>';
+                    $.each(data.Toko_buku.Koleksi_buku, function(index, book){
+                        table += '<tr><td>' + book.judul + '<td></td>' + book.tahun_terbit + '<td></td>' + book.harga + '</td></tr>';
+                    });
+
+                    table += '</table>';
+                    $('#koleksi_buku').html(table);
+            }
+        });
+    }
+
+</script>
+</head>
+
+<body>
+    <div id="bloc">
+        <h2>Menampilkan data Toko Buku</h2>
+        <button type="button" onclick="loadbloc()">Tekan tombol</button>
+    </div>
+
+    <div>
+        <!-- Informasi toko buku -->
+        <h2>Informasi Toko Buku</h2>
+        <div>Nama Toko: <span id="nama_toko"></span></div>
+        <div>Alamat Toko: <span id="alamat"></span></div>
+        <div>Pemilik Toko: <span id="pemilik"></span></div>
+    </div>
+
+    <div id="koleksi_buku">
+        <!-- Tabel koleksi buku -->
+    </div>
 </body>
 </html>
